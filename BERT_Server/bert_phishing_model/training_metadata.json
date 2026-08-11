@@ -1,0 +1,15 @@
+{
+  "base_model": "bert-base-uncased",
+  "max_length": 256,
+  "training_rows": 8400,
+  "validation_rows": 1800,
+  "test_rows": 1800,
+  "test_metrics": {
+    "eval_loss": 0.028289446607232094,
+    "eval_accuracy": 0.9944444444444445,
+    "eval_precision": 0.9988789237668162,
+    "eval_recall": 0.99,
+    "eval_f1": 0.9944196428571429
+  },
+  "roc_auc": 0.9994913580246914
+}

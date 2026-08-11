@@ -1,0 +1,65 @@
+#Setup Guide
+
+## Files Needed
+
+1. BERT_Server/ - All files for the model.
+
+- app.py — risk-score, explanation, and attachment-metadata server
+
+- requirements.txt
+
+- test_medium_high.py
+
+- test_server.py
+
+- bert_phishing_model/
+
+- venv/
+
+2. Phishing_Extension/ - All files for the Browser Extension
+
+- manifest.json
+
+- popup.html
+
+- popup.js
+
+
+## Setup
+
+
+## Start the server
+
+In Terminal:
+
+
+cd ~/BERT_Server
+source venv/bin/activate
+pip install -r requirements.txt
+python3 app.py
+
+
+
+## Test the server
+
+In second Terminal:
+
+
+cd ~/BERT_Server
+source venv/bin/activate
+python3 test_server.py
+
+
+
+## Install the extension
+
+1. Open chrome://extensions.
+2. Turn on Developer mode.
+3. Click Load unpacked.
+4. Select GRP33-PhishingExtensionCapstone/Phising_Extension.
+5. Open an individual Gmail or Outlook email.
+6. Click Read Open Email.
+7. Confirm sender, subject, body, and attachment names.
+8. Click Analyze Email.
+
+

@@ -1,0 +1,37 @@
+# Development Log
+
+##1 – Existing prototype review
+- Reviewed the original browser extension and Flask server.
+- The original extension required manual sender, subject, and body entry.
+- The original Flask server used a TensorFlow .keras model.
+
+
+##2 – Email extraction
+- Added automatic/button press extraction for Gmail.
+- Kept manual fields as a backup when a value cannot be detected.
+- Added clearer status and connection messages.
+
+
+##3 – BERT model work
+- Prepared the CEAS email dataset.
+- Trained a BERT classifier in Google Colab.
+- Saved the trained model and tokenizer.
+- Generated evaluation metrics, a confusion matrix, ROC curve, and training-loss graph.
+
+
+##4 – Flask integration
+- Replaced the old TensorFlow model-loading section with the trained BERT model.
+- Kept the same /analyze route so the browser extension could continue using the server.
+- Tested the extension-to-Flask-to-BERT workflow successfully.
+
+
+##5 – Risk scoring and attachment metadata
+- Added Low, Medium, and High risk levels.
+- Added plain language reasons for each result.
+- Added checks for urgency, credential requests, payment wording, and shortened links.
+- Added visible attachment filename analysis without downloading files.
+- Added checks for risky extensions, macro-enabled files, suspicious words, and double extensions.
+
+
+##Currently
+The model can read an open Gmail email, send it to the Flask server, run BERT analysis, check visible attachment metadata, and return an explainable risk result.

@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Phishing Risk Analyzer",
+  "version": "2.3.1",
+  "description": "Analyzes Gmail and Outlook email text plus visible attachment filename metadata without downloading files.",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://mail.google.com/*",
+    "https://outlook.live.com/*",
+    "https://outlook.office.com/*",
+    "https://outlook.office365.com/*",
+    "http://127.0.0.1:5000/*",
+    "http://localhost:5000/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Phishing Detector"
+  }
+}

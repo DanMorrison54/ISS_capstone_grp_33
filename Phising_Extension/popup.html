@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phishing Detector</title>
+  <style>
+    html {
+      width: 420px;
+      min-width: 420px;
+      max-width: 420px;
+      overflow-x: hidden;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      max-width: 100%;
+    }
+    body {
+      width: 420px;
+      min-width: 420px;
+      max-width: 420px;
+      font-family: Arial, sans-serif;
+      padding: 14px;
+      margin: 0;
+      color: #202124;
+      overflow-x: hidden;
+    }
+    h3 { margin: 0 0 6px; }
+    .help { font-size: 12px; color: #5f6368; margin-bottom: 12px; }
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      margin: 8px 0 4px;
+    }
+    input, textarea {
+      width: 100%;
+      margin-bottom: 4px;
+      box-sizing: border-box;
+      border: 1px solid #c8c8c8;
+      border-radius: 5px;
+      padding: 8px;
+      font: inherit;
+    }
+    textarea {
+      height: 108px;
+      resize: vertical;
+      overflow-x: hidden;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+    #attachments { height: 58px; background: #f8f9fa; }
+    button {
+      width: 100%;
+      padding: 9px;
+      margin-top: 8px;
+      border: 0;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    #readEmail { background: #e8f0fe; color: #174ea6; }
+    #analyze { background: #1a73e8; color: white; }
+    button:disabled { opacity: 0.65; cursor: wait; }
+    #source { margin-top: 8px; font-size: 12px; color: #5f6368; }
+    #result {
+      margin-top: 12px;
+      padding: 12px;
+      border: 1px solid #dadce0;
+      border-radius: 8px;
+      min-height: 42px;
+      background: #f8f9fa;
+      font-size: 13px;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      white-space: normal;
+    }
+    .error { color: #b3261e; }
+    .success { color: #137333; }
+    .result-card { color: #202124; border-left-width: 5px !important; }
+    .result-card.low {
+      background: #eaf7ee !important;
+      border-color: #93d3a2 !important;
+      border-left-color: #188038 !important;
+    }
+    .result-card.medium {
+      background: #fef7e0 !important;
+      border-color: #f6c453 !important;
+      border-left-color: #f9ab00 !important;
+    }
+    .result-card.high {
+      background: #fce8e6 !important;
+      border-color: #ef9a92 !important;
+      border-left-color: #d93025 !important;
+    }
+    .result-heading {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 9px;
+    }
+    .result-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      font-size: 15px;
+      font-weight: 700;
+      color: white;
+    }
+    .low .result-icon { background: #188038; }
+    .medium .result-icon { background: #f9ab00; color: #202124; }
+    .high .result-icon { background: #d93025; }
+    .result-badge { font-size: 16px; font-weight: 700; }
+    .low .result-badge { color: #137333; }
+    .medium .result-badge { color: #8a4b00; }
+    .high .result-badge { color: #b3261e; }
+    .metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px 0;
+      border-top: 1px solid rgba(60, 64, 67, 0.16);
+      color: #3c4043;
+    }
+    .metric-row strong { font-size: 14px; }
+    .reasons {
+      margin: 8px 0 0;
+      padding: 8px 0 0 18px;
+      border-top: 1px solid rgba(60, 64, 67, 0.16);
+    }
+    .reasons li {
+      margin: 4px 0;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+    .metadata-note {
+      margin-top: 5px;
+      font-size: 11px;
+      color: #5f6368;
+    }
+  </style>
+</head>
+<body>
+  <h3>Phishing Detector</h3>
+  <div class="help">Reads the open email and visible attachment names without downloading files.</div>
+
+  <button id="readEmail">Read Open Email</button>
+  <div id="source">No email has been read yet.</div>
+
+  <label for="sender">Sender</label>
+  <input id="sender" placeholder="Sender name or email address">
+
+  <label for="subject">Subject</label>
+  <input id="subject" placeholder="Email subject">
+
+  <label for="body">Email body</label>
+  <textarea id="body" placeholder="Email body"></textarea>
+
+  <label for="attachments">Attachment names</label>
+  <textarea id="attachments" placeholder="No visible attachments found"></textarea>
+  <div class="metadata-note">Only filenames shown in the webpage are read. Files are not opened or downloaded.</div>
+
+  <button id="analyze">Analyze Email</button>
+
+  <div id="result">Waiting for analysis...</div>
+  <script src="popup.js"></script>
+</body>
+</html>
