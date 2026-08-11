@@ -1,0 +1,3 @@
+*.safetensors filter=lfs diff=lfs merge=lfs -text
+*.dylib filter=lfs diff=lfs merge=lfs -text
+BERT_Server/venv/** filter=lfs diff=lfs merge=lfs -text
